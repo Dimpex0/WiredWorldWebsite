@@ -17,20 +17,23 @@
                 <h2>{{ object_list|length }} Items</h2>
             </div>
             <div class="products-container">
-                {% for product in object_list %}
+                {% for cart in object_list %}
                     <div class="product-container">
                         <div class="image-container">
-                            <a href="{% url 'details product page' pk=product.pk %}"><img src="/media/{{ product.product.image }}" alt="product image"></a>
+                            <a href="{% url 'details product page' pk=cart.product.pk %}"><img src="/media/{{ cart.product.image }}" alt="product image"></a>
                         </div>
                         <div class="product-details-container">
-                            <a href="{% url 'details product page' pk=product.pk %}"><h3>{{ product.product.title|slice:"15" }}...</h3></a>
-                            <button class="remove-product-button">Remove</button>
+                            <a href="{% url 'details product page' pk=cart.product.pk %}"><h3>{{ cart.product.title }}</h3></a>
+                            <a href="{% url 'remove item from cart' pk=cart.product.pk %}" class="remove-product-button">Remove</a>
                         </div>
                         <div class="product-stock-container">
-                            <input type="number" min="0" max="{{ product.product.stock }}" placeholder="{{ product.quantity }}">
+                            <form method="POST" action="{% url 'update cart item quantity' pk=cart.product.pk %}">
+                                <input name="quantity" type="number" min="0" max="{{ cart.product.stock }}" value="{{ cart.quantity }}" onchange="submit()">
+                                {% csrf_token %}
+                            </form>
                         </div>
                         <div class="product-price-container">
-                            <p>{{ product.get_price }} BGN</p>
+                            <p>{{ cart.get_price }} BGN</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -53,9 +56,9 @@
             <div class="order-summary-shipping-container">
                 {% if address %}
                     <p class="order-summary-shipping-container-address">{{ address }}</p>
-                    <a href="#" class="order-summary-shipping-container-button">CHANGE</a>
+                    <a href="{% url 'update address page' %}" class="order-summary-shipping-container-button">CHANGE</a>
                 {% else %}
-                    <a href="#" class="order-summary-shipping-container-button">ADD ADDRESS</a>
+                    <a href="{% url 'add address page' %}" class="order-summary-shipping-container-button">ADD ADDRESS</a>
                 {% endif %}
             </div>
             <div class="order-summary-place-order-container">

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Update address | Wired World{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'style/address/index.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <form method="POST" action="{% url 'update address page' %}">
+            {{ form.as_div }}
+            <button>Update</button>
+            {% csrf_token %}
+        </form>
+    </main>
+{% endblock %}

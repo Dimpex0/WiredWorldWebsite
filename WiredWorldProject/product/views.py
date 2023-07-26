@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib import messages
 
+from WiredWorldProject.account.models import Profile
+from WiredWorldProject.cart.models import Cart
 from WiredWorldProject.product.forms import ProductCreateForm
 from WiredWorldProject.product.models import Product, Category, SubCategory
 
@@ -74,6 +76,30 @@ class EditProductView(LoginRequiredMixin, views.UpdateView):
 class DetailsProductView(views.DetailView):
     model = Product
     template_name = 'product/details.html'
+
+    def post(self, request, pk):
+        quantity = 1 if request.POST['quantity'] == "" else int(request.POST['quantity'])
+        profile = Profile.objects.get(client=request.user)
+        product = Product.objects.get(pk=pk)
+        if Cart.objects.filter(profile=profile, product=product):
+            cart = Cart.objects.get(profile=profile, product=product)
+            cart.quantity += quantity
+            cart.save()
+            if cart.quantity > product.stock:
+                cart.quantity = product.stock
+                cart.save()
+                messages.error(request, "Can't add more of this item (not enough stock)")
+                return redirect('details product page', pk=pk)
+            messages.success(request, 'Successfully added to cart')
+        else:
+            cart = Cart.objects.create(profile=profile, product=product, quantity=quantity)
+            if cart.quantity > product.stock:
+                cart.quantity = product.stock
+                cart.save()
+                messages.error(request, "Can't add more of this item (not enough stock)")
+                return redirect('details product page', pk=pk)
+            messages.success(request, 'Successfully added to cart')
+        return redirect('details product page', pk=pk)
 
 
 class CategoryView(views.ListView):

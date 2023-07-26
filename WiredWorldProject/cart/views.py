@@ -1,14 +1,16 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import redirect
 from django.views import generic as views
 
-from WiredWorldProject.account.models import Profile
 from WiredWorldProject.address.models import Address
 from WiredWorldProject.cart.models import Cart
+from WiredWorldProject.product.models import Product
 
 
 class CartView(views.ListView):
     model = Cart
     template_name = 'cart/index.html'
+    ordering = 'pk'
 
     def get_queryset(self):
         return Cart.objects.filter(profile__client=self.request.user).order_by('pk')
@@ -24,4 +26,23 @@ class CartView(views.ListView):
         return context
 
 
+def remove_item_view(request, pk):
+    product = Product.objects.get(pk=pk)
+    cart = Cart.objects.get(profile__client=request.user, product_id=pk)
+    cart.delete()
+    messages.success(request, f'Removed {product.title} from cart')
+    return redirect('cart page')
 
+
+def update_quantity_view(request, pk):
+    if request.method == 'POST':
+        product = Product.objects.get(pk=pk)
+        cart = Cart.objects.get(profile__client=request.user, product_id=pk)
+        quantity = int(request.POST['quantity'])
+        if quantity <= 0:
+            cart.delete()
+            messages.success(request, f'Removed {product.title} from cart')
+        else:
+            cart.quantity = quantity
+            cart.save()
+    return redirect('cart page')

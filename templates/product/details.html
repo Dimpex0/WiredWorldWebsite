@@ -11,9 +11,20 @@
         <img src="/media/{{ object.image }}" alt="product image">
 
         <section class="product-details-container">
-            <h2>{{ object.title }}</h2>
-            <p>{{ object.price }} BGN</p>
-            <p>{{ object.description }}</p>
+            <h2 class="product-title">{{ object.title }}</h2>
+            <p class="product-price">{{ object.price }} BGN</p>
+            <p class="product-description">{{ object.description|linebreaks }}</p>
+            {% if object.stock %}
+                <div>
+                    <form method="POST" action="{% url 'details product page' pk=object.pk %}">
+                        <input name="quantity" class="quantity-input" type="number" value="1" min="1" max="{{ object.stock }}">
+                        <button>Add to cart</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            {% else %}
+                <p class="out-of-stock-label">Out of stock</p>
+            {% endif %}
         </section>
     </main>
 {% endblock %}

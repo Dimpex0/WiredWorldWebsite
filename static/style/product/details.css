@@ -7,9 +7,33 @@ main {
 }
 
 main img {
-    width: 500px;
+    max-height: 600px;
 }
 
 main .product-details-container {
     background-color: lightgray;
+    padding: 25px 30px;
+}
+
+.product-price {
+    font-size: 26px;
+}
+
+main form input {
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+main form button {
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.out-of-stock-label {
+    font-size: 26px;
+    font-weight: bold;
 }

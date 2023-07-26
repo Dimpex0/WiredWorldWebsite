@@ -1,12 +1,13 @@
 const input = document.getElementById('search-input')
 const list = document.getElementById('search-list')
-const PRODUCTS_API_URL = 'http://127.0.0.1:8000/products-api'
+const PRODUCTS_API_URL = 'http://127.0.0.1:8000/products-api/'
 
 let products = []
 
 fetch(PRODUCTS_API_URL)
     .then(res => res.json())
     .then(data => {
+        console.log(data)
         data.forEach(product => {
             products.push(product)
         })

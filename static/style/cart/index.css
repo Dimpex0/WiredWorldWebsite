@@ -66,6 +66,18 @@ main {
     width: 100px;
 }
 
+.remove-product-button {
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.remove-product-button:hover {
+    transition: 100ms;
+    background-color: black;
+    color: white;
+    padding: 3px 7px;
+}
+
 .product-details-container {
     flex-basis: 30%;
 }

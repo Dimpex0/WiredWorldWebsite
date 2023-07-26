@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+main form div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
