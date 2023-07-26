@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+}
+
+form {
+    margin-top: 12px;
+}
+
+.btn {
+    all: unset;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid black;
+    font-size: 24px;
+}
+
+.delete-btn {
+    background-color: black;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: red;
+    color: white;
+}

@@ -1,0 +1,171 @@
+h2, h3, p, a, ul {
+    margin: 0;
+    padding: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+a {
+    color: black;
+}
+
+main {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.shopping-cart, .order-summary {
+    padding: 20px 60px;
+}
+
+.shopping-cart {
+    flex-basis: 70%;
+}
+
+.header {
+    padding-bottom: 30px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.shopping-cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.order-summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.product-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.image-container {
+    margin-right: 10px;
+}
+
+.image-container img {
+    width: 100px;
+}
+
+.product-details-container {
+    flex-basis: 30%;
+}
+
+.product-details-container button {
+    all: unset;
+    cursor: pointer;
+    color: #808080;
+}
+
+.product-stock-container {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.product-stock-container input {
+    all: unset;
+    text-align: end;
+    width: 80px;
+    font-size: 20px;
+}
+
+.product-price-container {
+    flex-basis: 15%;
+    text-align: end;
+}
+
+.shopping-cart-footer {
+    margin-top: 80px;
+}
+
+.shopping-cart-footer a {
+    font-size: 24px;
+}
+
+.order-summary {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.order-summary-short-description {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.order-summary-short-description {
+    font-weight: bold;
+}
+
+.order-summary-short-description-price {
+    margin-left: auto;
+}
+
+.order-summary-shipping-container {
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid darkgrey;
+}
+
+.order-summary-shipping-container-address {
+    background-color: lightgrey;
+    max-width: 100%;
+    padding: 5px;
+}
+
+.order-summary-shipping-container-button {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.order-summary-shipping-container a {
+    cursor: pointer;
+    background-color: black;
+    padding: 5px 10px;
+    color: white;
+}
+
+.order-summary-shipping-container a:hover {
+    background-color: white;
+    color: black;
+}
+
+.order-summary-place-order-container {
+    margin-top: 40px;
+    margin-left: auto;
+}
+
+.order-summary-place-order-container a {
+    all: unset;
+    cursor: pointer;
+    background-color: #1f5475;
+    color: white;
+    padding: 8px 20px;
+}
+
+.order-summary-place-order-container a:hover {
+    background-color: white;
+    color: black;
+}

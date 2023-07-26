@@ -1,0 +1,123 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 10px 80px 10px 80px;
+}
+
+main .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+}
+
+main .cards .card {
+    border: 1px solid #1f5475;
+}
+
+main .cards .card .card-content {
+    padding: 5px 10px 5px 10px;
+}
+
+main .cards .card .card-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+main .cards .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    margin: auto;
+}
+
+.out-of-stock {
+    all: unset;
+    position: absolute;
+    background-color: red;
+    color: white;
+    padding: 3px 6px 3px 6px;
+    border-radius: 4px;
+}
+
+.card-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+.card-button {
+    all: unset;
+    background-color: #1f5475;
+    padding: 3px 6px 3px 6px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card-edit-button {
+    background-color: darkred;
+}
+
+.paginating-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    text-decoration: none;
+    color: black;
+    font-size: 42px;
+}
+
+.paginating-counter {
+    font-size: 24px;
+}
+
+.paginating-buttons {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+}
+
+.paginating-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    text-decoration: none;
+    color: black;
+    font-size: 42px;
+}
+
+.paginating-counter {
+    font-size: 24px;
+}
+
+.paginating-buttons {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+}
+
+@media screen and (max-width: 1350px) {
+    main .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    main .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

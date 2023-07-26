@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart | Wired World{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'style/cart/index.css' %}">
+{% endblock %}
+
+{% block page_content %}
+
+    <main>
+    {% if not object_list %}
+        <h1>Your cart is empty :(</h1>
+    {% else %}
+        <div class="shopping-cart">
+            <div class="shopping-cart-header header">
+                <h2>Shopping Cart</h2>
+                <h2>{{ object_list|length }} Items</h2>
+            </div>
+            <div class="products-container">
+                {% for product in object_list %}
+                    <div class="product-container">
+                        <div class="image-container">
+                            <a href="{% url 'details product page' pk=product.pk %}"><img src="/media/{{ product.product.image }}" alt="product image"></a>
+                        </div>
+                        <div class="product-details-container">
+                            <a href="{% url 'details product page' pk=product.pk %}"><h3>{{ product.product.title|slice:"15" }}...</h3></a>
+                            <button class="remove-product-button">Remove</button>
+                        </div>
+                        <div class="product-stock-container">
+                            <input type="number" min="0" max="{{ product.product.stock }}" placeholder="{{ product.quantity }}">
+                        </div>
+                        <div class="product-price-container">
+                            <p>{{ product.get_price }} BGN</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="shopping-cart-footer">
+                <a href="{% url 'home page' %}"><i class="fa-solid fa-arrow-left-long"></i> Continue Shopping</a>
+            </div>
+        </div>
+        <div class="order-summary">
+            <div class="order-summary-header header">
+                <h2>Order Summary</h2>
+            </div>
+            <div class="order-summary-short-description">
+                <p>ITEMS {{ object_list|length }}</p>
+                <p class="order-summary-short-description-price">{{ total_price }} BGN</p>
+            </div>
+            <div class="order-summary-shipping-label-container">
+                <p style="font-weight: bold">SHIPPING</p>
+            </div>
+            <div class="order-summary-shipping-container">
+                {% if address %}
+                    <p class="order-summary-shipping-container-address">{{ address }}</p>
+                    <a href="#" class="order-summary-shipping-container-button">CHANGE</a>
+                {% else %}
+                    <a href="#" class="order-summary-shipping-container-button">ADD ADDRESS</a>
+                {% endif %}
+            </div>
+            <div class="order-summary-place-order-container">
+                <a href="#">PLACE ORDER</a>
+            </div>
+        </div>
+    {% endif %}
+    </main>
+
+{% endblock %}

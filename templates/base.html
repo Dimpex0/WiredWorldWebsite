@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wired World{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/wired_world_logo_white.svg' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0b1ca8c563.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'home page' %}"><img id="logo" style="width: 200px" src="{% static 'images/wired_world_logo.svg' %}" alt="logo"></a>
+        <div class="search-container">
+            <input id="search-input" type="text" placeholder="Search...">
+            <ul id="search-list">
+
+            </ul>
+        </div>
+        <div class="nav-icons">
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <a href="{% url 'account details page' %}"><i class="icon dropbtn fa-solid fa-user"></i></a>
+                  <div class="dropdown-content">
+                    <a href="{% url 'account details page' %}">Account</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                  </div>
+                </div>
+                <a href="#"><i class="icon fa-solid fa-heart"></i></a>
+                <a href="{% url 'cart page' %}"><i class="icon fa-solid fa-cart-shopping"></i></a>
+            {% else %}
+                <a href="{% url 'login page' %}"><i class="icon fa-solid fa-arrow-right-to-bracket"></i></a>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block page_content %}
+    {% endblock %}
+
+    <script src="{% static 'javascript/base.js' %}"></script>
+</body>
+</html>

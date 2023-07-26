@@ -1,0 +1,15 @@
+main {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 80px;
+}
+
+main img {
+    width: 500px;
+}
+
+main .product-details-container {
+
+}

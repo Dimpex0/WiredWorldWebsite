@@ -1,0 +1,175 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 80px 10px 80px;
+    background-color: #1f5475;
+    margin-bottom: 30px;
+}
+
+nav #logo {
+    filter: invert(100%);
+}
+
+nav #logo:hover {
+    filter: invert(0%);
+}
+
+nav input {
+    width: 600px;
+    margin: auto;
+}
+
+.search-container {
+    position: relative;
+}
+
+#search-list {
+    position: absolute;
+    width: 600px;
+    list-style-type: none;
+    padding: 0;
+    z-index: 1000;
+}
+
+#search-list li {
+    background-color: lightgrey;
+    border-bottom: 1px solid black;
+}
+
+#search-list li:hover {
+    transition: 150ms;
+    background-color: #1f5475;
+}
+
+#search-list li:hover a {
+    transition: 150ms;
+    color: white;
+}
+
+#search-list a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+#search-list a p {
+    padding: 0;
+    margin: 0;
+}
+
+#search-list a .list-price {
+    margin-left: auto;
+    margin-right: 16px;
+    font-weight: 200;
+}
+
+#search-list li img {
+    width: 100px;
+}
+
+nav .nav-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+nav .icon {
+    font-size: 32px;
+    color: white;
+}
+
+nav .icon:hover {
+    transition: 150ms;
+    color: black;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+.messages {
+    padding: 10px;
+    list-style: none;
+    text-align: center;
+    font-size: 24px;
+}
+
+.messages li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.messages .success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.messages .error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.messages .warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    nav {
+        flex-direction: column;
+        padding: 15px 210px;
+        gap: 12px;
+    }
+
+    nav #logo {
+        height: 100px;
+    }
+    #search-list {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1070px) {
+    nav input {
+        transition: 500ms;
+        width: 400px;
+    }
+}

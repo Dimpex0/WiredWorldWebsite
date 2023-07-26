@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ current_category }}{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'style/product/category.css' %}">
+{% endblock %}
+
+{% block page_content %}
+
+    <main>
+        {% if subcategories %}
+            <aside>
+                <form method="GET" action="{% url 'category page' category=current_category %}">
+                      {% for subcategory in subcategories %}
+                          <div>
+                              <input {% if subcategory.name in selected_subcategories %} checked {% endif %} name="{{ subcategory.name }}" type="checkbox" id="{{ subcategory.name }}" value="{{ subcategory.name }}" onclick="submit()">
+                              <label for="{{ subcategory.name }}">{{ subcategory.name }}</label>
+                          </div>
+                      {% endfor %}
+                </form>
+            </aside>
+        {% endif %}
+        <section class="cards">
+            {% for product in object_list %}
+                <div class="card">
+                    <img style="width: 250px" src="/media/{{ product.image }}" alt="">
+                    {% if product.stock <= 0 %}
+                        <p class="out-of-stock">Out of stock</p>
+                    {% endif %}
+                    <div class="card-content">
+                        <p class="card-title">{{ product.title }}</p>
+                        <p class="card-description">{{ product.description|slice:"20" }}...</p>
+                        <div class="card-buttons">
+                            {% if product_manager %}
+                                <a class="card-edit-button card-button" style="display: block" href="{% url 'edit product page' pk=product.pk %}">Edit</a>
+                            {% endif %}
+                            <a class="card-details-button card-button" href="{% url 'details product page' pk=product.pk %}">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        <section class="paginating-container">
+            <div class="paginating-counter">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </div>
+            <div class="paginating-buttons">
+                {% if page_obj.has_previous %}
+                  <a href="?page={{ page_obj.previous_page_number }}"><i class="icon fa-solid fa-backward"></i></a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}"><i class="icon fa-solid fa-forward"></i></a>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Wired World</title>
+    <link rel="stylesheet" href="{% static 'style/account/login.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/wired_world_logo_white.svg' %}">
+</head>
+<body>
+
+    <div class="background">
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+    </div>
+    <div class="page-container">
+        <h1>Wired World</h1>
+        <form method="POST" action="{% url 'login page' %}">
+            {{ form.as_div }}
+            <div class="a-div">
+                <a href="#">Forgot password?</a>
+            </div>
+            <div class="button-div">
+                <button>Login</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+    <p>Don't have an account? <a href="{% url 'register page' %}">Register here</a></p>
+</body>
+</html>

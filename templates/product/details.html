@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ object.title }} | WiredWorld{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'style/product/details.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+
+        <img src="/media/{{ object.image }}" alt="product image">
+
+        <section class="product-details-container">
+            <h2>{{ object.title }}</h2>
+            <p>{{ object.price }} BGN</p>
+            <p>{{ object.description }}</p>
+        </section>
+    </main>
+{% endblock %}
