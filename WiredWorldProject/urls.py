@@ -23,6 +23,7 @@ urlpatterns = [
     path('account/', include('WiredWorldProject.account.urls')),
     path('review/', include('WiredWorldProject.review.urls')),
     path('cart/', include('WiredWorldProject.cart.urls')),
+    path('order/', include('WiredWorldProject.order.urls')),
     path('address/', include('WiredWorldProject.address.urls')),
     path('api-auth/', include('rest_framework.urls'))
 ]

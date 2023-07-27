@@ -31,6 +31,12 @@ main .create-product button {
     color: white;
 }
 
+main .create-product button:hover {
+    transition: 150ms;
+    color: black;
+    background-color: white;
+}
+
 main .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
