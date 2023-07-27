@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'WiredWorldProject.review',
     'WiredWorldProject.cart',
     'WiredWorldProject.address',
+    'WiredWorldProject.order',
 
     'rest_framework',
     'corsheaders',

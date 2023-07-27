@@ -182,6 +182,12 @@ footer a {
     margin-right: 20px;
 }
 
+footer .icon {
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
 footer a:hover {
     transition: 200ms;
     color: black;
