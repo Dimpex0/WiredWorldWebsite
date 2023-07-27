@@ -28,7 +28,7 @@ input.oninput = () => {
                 let li = document.createElement('li')
 
                 let a = document.createElement('a')
-                a.href = 'details/' + product.id + '/'
+                a.href = 'http://127.0.0.1:8000/details/' + product.id + '/'
                 li.appendChild(a)
 
                 let img = document.createElement('img')
