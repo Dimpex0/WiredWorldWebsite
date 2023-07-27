@@ -5,7 +5,7 @@ from WiredWorldProject.product.models import Product, SubCategory, Category
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'price', 'stock']
+    list_display = ['id', 'title', 'price', 'stock']
 
 
 @admin.register(SubCategory)
