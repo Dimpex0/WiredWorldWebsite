@@ -1,0 +1,44 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+}
+
+.like-container {
+    display: flex;
+    align-items: center;
+    width: 800px;
+}
+
+.like-container a {
+    display: flex;
+    align-items: center;
+}
+
+.like-container img {
+    width: 100px;
+}
+
+.like-container a p {
+    font-size: 24px;
+}
+
+.price {
+    margin-left: auto;
+}
+
+.like-button {
+    margin: auto 0;
+}
+
+.like-button i {
+    font-size: 40px;
+}
+
+.liked {
+    color: #1f5475;
+    text-decoration: none;
+    margin-left: 50px;
+}

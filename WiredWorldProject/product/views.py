@@ -7,6 +7,7 @@ from django.contrib import messages
 
 from WiredWorldProject.account.models import Profile
 from WiredWorldProject.cart.models import Cart
+from WiredWorldProject.like.models import Like
 from WiredWorldProject.product.forms import ProductCreateForm
 from WiredWorldProject.product.models import Product, Category, SubCategory
 
@@ -40,6 +41,9 @@ class IndexView(views.ListView):
             context['product_manager'] = True
             context['product_form'] = ProductCreateForm
         context['categories'] = Category.objects.all()
+        if self.request.user.is_authenticated:
+            likes = Like.objects.filter(profile__client=self.request.user)
+            context['liked_products'] = [like.product for like in likes]
         return context
 
     def post(self, request):
@@ -76,6 +80,14 @@ class EditProductView(LoginRequiredMixin, views.UpdateView):
 class DetailsProductView(views.DetailView):
     model = Product
     template_name = 'product/details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['liked'] = Like.objects.filter(profile__client=self.request.user, product=self.object)
+        if self.request.user.is_authenticated and get_user_groups_permissions(self.request.user, ['Product management']):
+            context['product_manager'] = True
+            context['product_form'] = ProductCreateForm
+        return context
 
     def post(self, request, pk):
         quantity = 1 if request.POST['quantity'] == "" else int(request.POST['quantity'])
@@ -119,6 +131,9 @@ class CategoryView(views.ListView):
             context['product_manager'] = True
         context['current_category'] = self.kwargs['category']
         context['subcategories'] = SubCategory.objects.filter(category__name=self.kwargs['category'])
+        if self.request.user.is_authenticated:
+            likes = Like.objects.filter(profile__client=self.request.user)
+            context['liked_products'] = [like.product for like in likes]
         return context
 
     def get_queryset(self):

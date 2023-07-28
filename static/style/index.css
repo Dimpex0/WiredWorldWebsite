@@ -82,6 +82,22 @@ main .cards .card img {
     font-weight: 600;
 }
 
+.like-button {
+    margin-right: auto;
+}
+
+.like-button i {
+    font-size: 24px;
+}
+
+.liked {
+    color: #1f5475;
+}
+
+.not-liked {
+    color: black;
+}
+
 .card-button {
     all: unset;
     background-color: #1f5475;

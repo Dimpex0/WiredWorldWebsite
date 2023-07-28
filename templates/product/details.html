@@ -13,18 +13,30 @@
         <section class="product-details-container">
             <h2 class="product-title">{{ object.title }}</h2>
             <p class="product-price">{{ object.price }} BGN</p>
-            <p class="product-description">{{ object.description|linebreaks }}</p>
-            {% if object.stock %}
-                <div>
-                    <form method="POST" action="{% url 'details product page' pk=object.pk %}">
-                        <input name="quantity" class="quantity-input" type="number" value="1" min="1" max="{{ object.stock }}">
-                        <button>Add to cart</button>
-                        {% csrf_token %}
-                    </form>
-                </div>
-            {% else %}
-                <p class="out-of-stock-label">Out of stock</p>
-            {% endif %}
+            <div class="product-description">
+                <p>{{ object.description|linebreaks }}</p>
+            </div>
+            <div class="action-container">
+                {% if object.stock %}
+                    <div>
+                        <form method="POST" action="{% url 'details product page' pk=object.pk %}">
+                            <input name="quantity" class="quantity-input" type="number" value="1" min="1" max="{{ object.stock }}">
+                            <button>Add to cart</button>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                {% else %}
+                    <p class="out-of-stock-label">Out of stock</p>
+                {% endif %}
+                {% if liked %}
+                    <a class="like-button liked" href="{% url 'unlike product' pk=product.pk %}"><i class="fa-solid fa-heart"></i></a>
+                {% else %}
+                    <a class="like-button not-liked" href="{% url 'like product' pk=product.pk %}"><i class="fa-regular fa-heart"></i></a>
+                {% endif %}
+                {% if product_manager %}
+                    <a class="product-edit-button" style="display: block" href="{% url 'edit product page' pk=product.pk %}">Edit</a>
+                {% endif %}
+            </div>
         </section>
     </main>
 {% endblock %}

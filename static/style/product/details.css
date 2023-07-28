@@ -19,6 +19,10 @@ main .product-details-container {
     font-size: 26px;
 }
 
+.product-description p {
+    margin-bottom: 12px;
+}
+
 main form input {
     padding: 5px 10px;
     font-size: 20px;
@@ -31,6 +35,44 @@ main form button {
     padding: 5px 10px;
     font-size: 20px;
     font-weight: bold;
+}
+
+.action-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.like-button {
+    margin: auto 0;
+}
+
+.like-button i {
+    font-size: 40px;
+}
+
+.liked {
+    color: #1f5475;
+}
+
+.not-liked {
+    color: black;
+}
+
+.product-edit-button {
+    all: unset;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: darkred;
+    color: white;
+    margin-left: auto;
+}
+
+.product-edit-button:hover {
+    transition: 100ms;
+    background-color: #1f5475;
 }
 
 .out-of-stock-label {

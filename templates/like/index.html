@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Liked | Wired World{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'style/like/index.css' %}">
+{% endblock %}
+
+
+{% block page_content %}
+
+    <main>
+        {% for like in object_list %}
+            <div class="like-container">
+                <a href="{% url 'details product page' pk=like.product.pk %}">
+                    <img src="/media/{{ like.product.image }}" alt="product image">
+                    <p>{{ like.product.title }}</p>
+                </a>
+                <p class="price">{{ like.product.price }} BGN</p>
+                <a class="like-button liked" href="{% url 'unlike product' pk=like.product.pk %}"><i class="fa-solid fa-heart"></i></a>
+            </div>
+        {% endfor %}
+    </main>
+
+{% endblock %}
