@@ -53,6 +53,11 @@
                         <p class="card-title">{{ product.title }}</p>
                         <p class="card-description">{{ product.description|slice:"20" }}...</p>
                         <div class="card-buttons">
+                            {% if product in liked_products %}
+                                <a class="like-button liked" href="{% url 'unlike product' pk=product.pk %}"><i class="fa-solid fa-heart"></i></a>
+                            {% else %}
+                                <a class="like-button not-liked" href="{% url 'like product' pk=product.pk %}"><i class="fa-regular fa-heart"></i></a>
+                            {% endif %}
                             {% if product_manager %}
                                 <a class="card-edit-button card-button" style="display: block" href="{% url 'edit product page' pk=product.pk %}">Edit</a>
                             {% endif %}
