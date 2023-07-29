@@ -83,7 +83,8 @@ class DetailsProductView(views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['liked'] = Like.objects.filter(profile__client=self.request.user, product=self.object)
+        if self.request.user.is_authenticated:
+            context['liked'] = Like.objects.filter(profile__client=self.request.user, product=self.object)
         if self.request.user.is_authenticated and get_user_groups_permissions(self.request.user, ['Product management']):
             context['product_manager'] = True
             context['product_form'] = ProductCreateForm
