@@ -38,6 +38,9 @@
             {% else %}
                 <a href="{% url 'login page' %}"><i class="icon fa-solid fa-arrow-right-to-bracket"></i></a>
             {% endif %}
+            {% if user.is_staff %}
+                <a class="admin-button" href="{% url 'admin:index' %}">Admin</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -55,7 +58,7 @@
 
     <footer>
         <p>Developed by D. Dimitrov</p>
-        <a href="https://www.instagram.com/d___dimitrov/" target="_blank"><i class="icon fa-brands fa-instagram"></i>d___dimitrov</a>
+        <a href="https://www.instagram.com/d___dimitrov/" target="_blank"><i class="instagram-icon fa-brands fa-instagram"></i>d___dimitrov</a>
     </footer>
 
     <script src="{% static 'javascript/base.js' %}"></script>

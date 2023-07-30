@@ -3,10 +3,11 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
 }
 
 main img {
-    width: 250px;
+    width: 350px;
     margin-bottom: 12px;
     clip-path: circle();
 }
@@ -54,6 +55,22 @@ main form input {
     border: 1px solid black;
 }
 
+@media screen and (max-width: 1200px) {
+    body {
+        font-size: 2rem;
+    }
+
+    body .icon {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    body {
+        font-size: 2rem;
+    }
+}
+
 @media screen and (max-width: 600px) {
     main {
         padding: 0 30px;
@@ -63,5 +80,11 @@ main form input {
     }
     main form {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    main form {
+        font-size: 2.5rem;
     }
 }
