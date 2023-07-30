@@ -132,6 +132,22 @@ nav .icon:hover {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
+.admin-button {
+    all: unset;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    padding: 5px 8px;
+    background-color: black;
+}
+
+.admin-button:hover {
+    transition: 100ms;
+    background-color: white;
+    color: black;
+}
+
 .messages {
     padding: 10px;
     list-style: none;
@@ -186,7 +202,7 @@ footer a {
     margin-right: 20px;
 }
 
-footer .icon {
+footer .instagram-icon {
     color: white;
     font-size: 20px;
     margin-right: 5px;
@@ -196,8 +212,6 @@ footer a:hover {
     transition: 200ms;
     color: black;
 }
-
-
 
 @media screen and (max-width: 1200px) {
     nav {
@@ -209,14 +223,31 @@ footer a:hover {
     nav #logo {
         height: 100px;
     }
+
+    nav input {
+        width: 1000px;
+    }
+
     #search-list {
         width: 100%;
+    }
+
+    #search-list li a {
+        font-size: 35px;
+    }
+
+    body {
+        font-size: 2rem;
+    }
+
+    body .icon {
+        font-size: 50px;
     }
 }
 
 @media screen and (max-width: 1070px) {
     nav input {
         transition: 500ms;
-        width: 400px;
+        width: 800px;
     }
 }
