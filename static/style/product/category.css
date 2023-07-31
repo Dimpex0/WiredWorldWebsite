@@ -137,3 +137,35 @@ main .cards .card img {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media screen and (max-width: 710px) {
+    main .cards .card img {
+        width: 150px;
+    }
+
+    main .cards .card .card-content .card-description {
+        font-size: 18px;
+    }
+
+    .out-of-stock {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 615px) {
+    main {
+        padding: 10px 0;
+    }
+
+    main .cards {
+        grid-template-columns: 1fr;
+    }
+
+    main .cards .card img {
+        width: 250px;
+    }
+
+    main .cards .card .card-content .card-description {
+        font-size: 25px;
+    }
+}

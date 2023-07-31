@@ -23,7 +23,7 @@
         <section class="cards">
             {% for product in object_list %}
                 <div class="card">
-                    <img style="width: 250px" src="/media/{{ product.image }}" alt="">
+                    <img src="/media/{{ product.image }}" alt="">
                     {% if product.stock <= 0 %}
                         <p class="out-of-stock">Out of stock</p>
                     {% endif %}
