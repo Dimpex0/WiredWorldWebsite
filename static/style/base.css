@@ -251,3 +251,32 @@ footer a:hover {
         width: 800px;
     }
 }
+
+@media screen and (max-width: 850px) {
+    nav input {
+        width: 600px;
+    }
+
+    footer, footer .instagram-icon {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    nav input {
+        width: 400px;
+    }
+    #search-list li a {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    nav input {
+        width: 250px;
+    }
+
+    footer, footer .instagram-icon {
+        font-size: 10px;
+    }
+}

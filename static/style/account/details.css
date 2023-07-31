@@ -71,6 +71,18 @@ main form input {
     }
 }
 
+@media screen and (max-width: 650px) {
+    main form {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    main form {
+        width: 90%;
+    }
+}
+
 @media screen and (max-width: 600px) {
     main {
         padding: 0 30px;
@@ -80,11 +92,5 @@ main form input {
     }
     main form {
         width: 100%;
-    }
-}
-
-@media screen and (max-width: 630px) {
-    main form {
-        font-size: 2.5rem;
     }
 }
