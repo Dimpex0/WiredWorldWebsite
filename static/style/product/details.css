@@ -79,3 +79,28 @@ main form button {
     font-size: 26px;
     font-weight: bold;
 }
+
+@media screen and (max-width: 1400px) {
+    main img {
+        max-height: 400px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main img {
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    main .product-details-container {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+}
