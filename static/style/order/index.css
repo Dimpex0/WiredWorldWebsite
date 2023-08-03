@@ -17,8 +17,16 @@ main {
 }
 
 .left-side {
-    padding: 10px 15px;
+    padding: 0 20px;
     flex-basis: 60%;
+}
+
+.left-side img {
+    margin-right: 12px;
+}
+
+.product-row:not(.product-row:last-of-type) {
+    margin-bottom: 12px;
 }
 
 .right-side {

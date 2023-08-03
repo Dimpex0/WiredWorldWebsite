@@ -13,7 +13,7 @@
                 <div class="order-container">
                     <div class="left-side">
                     {% for product in order %}
-                        <p><a href="{% url 'details product page' pk=product.product.pk %}"><img style="width: 50px" src="/media/{{ product.product.image }}" alt="product image">{{ product.product.title }}</a>  X {{ product.quantity }} - {{ product.get_price }} BGN</p>
+                        <p class="product-row"><a href="{% url 'details product page' pk=product.product.pk %}"><img style="width: 50px" src="/media/{{ product.product.image }}" alt="product image">{{ product.product.title }}</a>  X {{ product.quantity }} - {{ product.get_price }} BGN</p>
                     {% endfor %}
                     </div>
                         <div class="right-side">

@@ -33,7 +33,7 @@
                     <a href="{% url 'logout' %}">Logout</a>
                   </div>
                 </div>
-                <a href="#"><i class="icon fa-solid fa-heart"></i></a>
+                <a href="{% url 'liked page' %}"><i class="icon fa-solid fa-heart"></i></a>
                 <a href="{% url 'cart page' %}"><i class="icon fa-solid fa-cart-shopping"></i></a>
             {% else %}
                 <a href="{% url 'login page' %}"><i class="icon fa-solid fa-arrow-right-to-bracket"></i></a>
