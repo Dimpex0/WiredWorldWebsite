@@ -80,16 +80,6 @@ class EditProductView(LoginRequiredMixin, views.UpdateView):
     template_name = 'product/edit.html'
     success_url = reverse_lazy('home page')
 
-    # def __init__(self, **kwargs):
-    #     super().__init__(**kwargs)
-    #     self.out_of_stock = False
-    #
-    # def get(self, request, *args, **kwargs):
-    #     product = self.get_object()
-    #     if product.stock <= 0:
-    #         self.out_of_stock = True
-    #     return super().get(request, *args, **kwargs)
-
     def form_valid(self, form):
         if form.cleaned_data['stock'] > 0:
             product = self.get_object()

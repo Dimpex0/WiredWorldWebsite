@@ -1,7 +1,6 @@
 import datetime
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
