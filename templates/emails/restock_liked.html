@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restocked {{product.title}}</title>
+</head>
+<body>
+<p>We're excited to let you know that an item you liked is now back in stock! Here are the details:</p>
+<p>
+    Product Name: {{ product.title }}<br>
+    Price: {{ product.price }} BGN<br>
+</p>
+
+<p>You can visit <a href="{{ product_link }}">this link</a> to purchase the item before it runs out again. Don't miss out on this opportunity!</p>
+
+<p>Happy shopping!</p>
+
+<p>Best Regards,<br>
+The Wired World Team</p>
+</body>
+</html>

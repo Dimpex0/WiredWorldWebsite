@@ -1,10 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from django.views import generic as views
 from django.contrib import messages
 
+from WiredWorldProject import settings
 from WiredWorldProject.account.models import Profile
 from WiredWorldProject.cart.models import Cart
 from WiredWorldProject.like.models import Like
@@ -75,6 +79,33 @@ class EditProductView(LoginRequiredMixin, views.UpdateView):
     fields = '__all__'
     template_name = 'product/edit.html'
     success_url = reverse_lazy('home page')
+
+    # def __init__(self, **kwargs):
+    #     super().__init__(**kwargs)
+    #     self.out_of_stock = False
+    #
+    # def get(self, request, *args, **kwargs):
+    #     product = self.get_object()
+    #     if product.stock <= 0:
+    #         self.out_of_stock = True
+    #     return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        if form.cleaned_data['stock'] > 0:
+            product = self.get_object()
+            product_link = self.request.build_absolute_uri('/details/' + str(product.pk) + '/')
+            if form.initial['stock'] <= 0:
+                people_that_liked_the_product = [like.profile.email for like in Like.objects.filter(product=product)]
+                html_message = render_to_string('emails/restock_liked.html', {'product': product, 'product_link': product_link})
+                plain_message = strip_tags(html_message)
+                send_mail(
+                    subject=f'Restocked {product.title}',
+                    message=plain_message,
+                    html_message=html_message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=people_that_liked_the_product
+                )
+        return super().form_valid(form)
 
 
 class DetailsProductView(views.DetailView):

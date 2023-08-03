@@ -1,0 +1,33 @@
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order placed successfully!</title>
+</head>
+<body>
+
+<p>This is an order confirmation from Wired World</p>
+<p>Thank you for shopping with Wired World. Your order has been successfully placed and is now being processed. We're excited to fulfill your purchase and provide you with a seamless shopping experience.</p>
+
+<p>Order Details:<br>
+Order Date: {{ time }}<br>
+Shipping Address: {{ address }}
+</p>
+
+<div style="border: 1px solid black; background-color: lightgray; padding: 15px">
+    <p>Order Summary:</p>
+    {% for cart in carts %}
+        <p>{{ cart.product.title }} - Quantity: {{ cart.quantity }}, Price: {{ cart.get_price }} BGN</p>
+    {% endfor %}
+</div>
+
+<p>Total Amount: {{ carts|getOrderTotal }} BGN</p>
+
+<p>Thank you again for choosing Wired World. We look forward to serving you again in the future.</p>
+
+<p>Best Regards,<br>
+The Wired World Team</p>
+
+</body>
+</html>

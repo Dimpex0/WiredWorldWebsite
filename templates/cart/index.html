@@ -62,7 +62,11 @@
                 {% endif %}
             </div>
             <div class="order-summary-place-order-container">
-                <a href="{% url 'process order' %}">PLACE ORDER</a>
+                {% if address %}
+                    <a href="{% url 'process order' %}">PLACE ORDER</a>
+                {% else %}
+                    <a href="">PLACE ORDER</a>
+                {% endif %}
             </div>
         </div>
     {% endif %}
