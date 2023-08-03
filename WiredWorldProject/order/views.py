@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.views import generic as views
 
 from WiredWorldProject.account.models import Profile
 from WiredWorldProject.cart.models import Cart
