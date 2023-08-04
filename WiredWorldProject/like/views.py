@@ -26,3 +26,6 @@ def unlike_product(request, pk):
 class LikeListView(LoginRequiredMixin, views.ListView):
     model = Like
     template_name = 'like/index.html'
+
+    def get_queryset(self):
+        return Like.objects.filter(profile__client=self.request.user)
