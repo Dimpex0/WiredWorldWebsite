@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_delete
 from django.dispatch import receiver, Signal
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -32,3 +32,8 @@ def send_restock_mail(instance, *args, **kwargs):
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=people_that_liked_the_product
         )
+
+
+@receiver(pre_delete, sender=Product)
+def product_delete_signal(instance, *args, **kwargs):
+    instance.image.delete()
