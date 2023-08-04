@@ -17,3 +17,9 @@ main form div {
     justify-content: space-between;
     gap: 12px;
 }
+
+@media screen and (max-width: 530px) {
+    main form {
+        font-size: 1.5rem;
+    }
+}
