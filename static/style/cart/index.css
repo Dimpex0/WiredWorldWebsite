@@ -181,3 +181,27 @@ main {
     background-color: white;
     color: black;
 }
+
+@media screen and (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .image-container img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .product-details-container h3 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .product-details-container h3 {
+        font-size: 14px;
+    }
+}
