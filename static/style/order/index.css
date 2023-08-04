@@ -11,7 +11,7 @@ main {
     border-radius: 8px;
     width: 900px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     gap: 50px;
 }
@@ -62,4 +62,38 @@ main {
     transition: 100ms;
     background-color: white;
     color: black;
+}
+
+@media screen and (max-width: 1000px) {
+    .order-container {
+        width: 700px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .order-container {
+        width: 600px;
+        gap: 0;
+    }
+
+    .left-side {
+        flex-basis: 70%;
+    }
+
+    .right-side {
+        flex-basis: 30%;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .order-container {
+        width: 450px;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .order-container {
+        width: auto;
+    }
 }
