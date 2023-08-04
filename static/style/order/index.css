@@ -42,6 +42,10 @@ main {
     margin-left: auto;
 }
 
+.order-total {
+    margin-bottom: 10px;
+}
+
 .order-button {
     margin: auto;
 }

@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
+from django.dispatch import Signal
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -14,6 +15,7 @@ from WiredWorldProject.cart.models import Cart
 from WiredWorldProject.like.models import Like
 from WiredWorldProject.product.forms import ProductCreateForm
 from WiredWorldProject.product.models import Product, Category, SubCategory
+from WiredWorldProject.product.signals import update_product_signal
 
 
 def get_user_groups_permissions(user, groups: list):
@@ -81,20 +83,8 @@ class EditProductView(LoginRequiredMixin, views.UpdateView):
     success_url = reverse_lazy('home page')
 
     def form_valid(self, form):
-        if form.cleaned_data['stock'] > 0:
-            product = self.get_object()
-            product_link = self.request.build_absolute_uri('/details/' + str(product.pk) + '/')
-            if form.initial['stock'] <= 0:
-                people_that_liked_the_product = [like.profile.email for like in Like.objects.filter(product=product)]
-                html_message = render_to_string('emails/restock_liked.html', {'product': product, 'product_link': product_link})
-                plain_message = strip_tags(html_message)
-                send_mail(
-                    subject=f'Restocked {product.title}',
-                    message=plain_message,
-                    html_message=html_message,
-                    from_email=settings.EMAIL_HOST_USER,
-                    recipient_list=people_that_liked_the_product
-                )
+        domain = self.request.get_host()
+        update_product_signal.send(sender=Product, instance=Product.objects.get(pk=self.kwargs['pk']), domain=domain, new_stock=form.cleaned_data['stock'])
         return super().form_valid(form)
 
 
