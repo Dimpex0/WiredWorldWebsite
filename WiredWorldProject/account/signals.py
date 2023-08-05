@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -42,3 +42,8 @@ def change_client_email(instance, *args, **kwargs):
         client.save()
 
 
+@receiver(pre_save, sender=Profile)
+def delete_image_on_update(instance, *args, **kwargs):
+    profile = Profile.objects.get(pk=instance.pk)
+    if profile.image != instance.image:
+        profile.image.delete(save=False)

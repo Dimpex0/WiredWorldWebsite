@@ -45,13 +45,8 @@ class DetailsAccountView(LoginRequiredMixin, views.UpdateView):
     def get_object(self, queryset=None):
         return Profile.objects.get(client=self.request.user)
 
-    def form_valid(self, form):
-        if form.has_changed():
-            return super().form_valid(form)
-        return self.get_success_url()
-
     def get_success_url(self):
-        return reverse('account details page')
+        return reverse_lazy('account details page')
 
 
 class DeleteProfileView(LoginRequiredMixin, views.DeleteView):
