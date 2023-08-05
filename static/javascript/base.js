@@ -7,7 +7,6 @@ let products = []
 fetch(PRODUCTS_API_URL)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         data.forEach(product => {
             products.push(product)
         })

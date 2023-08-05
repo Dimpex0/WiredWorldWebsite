@@ -23,3 +23,4 @@ class ClientAdmin(UserAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['email', 'first_name', 'first_name']
+    search_fields = ['email', 'first_name', 'last_name']
