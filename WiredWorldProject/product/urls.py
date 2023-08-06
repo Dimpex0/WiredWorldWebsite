@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from django.views.decorators.cache import cache_page
 
 from WiredWorldProject.product.api import ProductListApiView
 from WiredWorldProject.product.views import IndexView, EditProductView, DetailsProductView, CategoryView
