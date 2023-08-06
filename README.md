@@ -19,3 +19,10 @@ To run it locally you will need:
    - variables for GMAIL SMTP server:
      - EMAIL_HOST_USER
      - EMAIL_HOST_PASSWORD
+   - if you want to deploy it add:
+     - STATIC_ROOT=/app/static_files
+     - MEDIA_ROOT=/app/media_files
+
+Basic database needs for running the app:
+ - add Group called 'Product management' that has full CRUD operations to the products
+ - create at least one Category and one Subcategory for adding products
