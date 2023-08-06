@@ -105,11 +105,18 @@ DATABASES = {
 #     }
 # }
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+if DEBUG:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        }
     }
-}
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    }
 
 # REST_FRAMEWORK = {
 #     # Use Django's standard `django.contrib.auth` permissions,
@@ -156,13 +163,16 @@ USE_TZ = True
 
 STATIC_URL = '/static_files/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']
-STATIC_ROOT = os.getenv('STATIC_ROOT', BASE_DIR / 'static')
+if not DEBUG:
+    STATIC_ROOT = os.getenv('STATIC_ROOT', BASE_DIR / 'static_files')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', BASE_DIR / 'media')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+if not DEBUG:
+    MEDIA_ROOT = os.getenv('MEDIA_ROOT', BASE_DIR / 'media_files')
+else:
+    MEDIA_ROOT = BASE_DIR / 'media_files'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
