@@ -8,9 +8,10 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - ./.production-env
+      - .production-env
     volumes:
       - /tmp/app-resources/static:/app/static_files
+      - /tmp/app-resources/media:/app/media_files
     platform: linux/amd64
     links:
       - postgres
@@ -28,6 +29,7 @@ services:
       - "443:443"
     volumes:
       - /tmp/app-resources/static:/home/app/web/staticfiles
+      - /tmp/app-resources/media:/home/app/web/mediafiles
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/logs:/var/log/nginx
       - ./certbot/www:/var/www/certbot/:ro
