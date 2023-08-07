@@ -8,6 +8,7 @@
 {% block page_content %}
 
     <main>
+    {% if object_list %}
         {% if subcategories %}
             <aside>
                 <form method="GET" action="{% url 'category page' category=current_category %}">
@@ -58,6 +59,9 @@
                 {% endif %}
             </div>
         </section>
+    {% else %}
+        <h1 style="text-align: center">No products to show</h1>
+    {% endif %}
     </main>
 
 {% endblock %}

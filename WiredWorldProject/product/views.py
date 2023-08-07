@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.dispatch import Signal
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.html import strip_tags
 from django.views import generic as views
 from django.contrib import messages
@@ -102,28 +102,31 @@ class DetailsProductView(views.DetailView):
         return context
 
     def post(self, request, pk):
-        quantity = 1 if request.POST['quantity'] == "" else int(request.POST['quantity'])
-        profile = Profile.objects.get(client=request.user)
-        product = Product.objects.get(pk=pk)
-        if Cart.objects.filter(profile=profile, product=product):
-            cart = Cart.objects.get(profile=profile, product=product)
-            cart.quantity += quantity
-            cart.save()
-            if cart.quantity > product.stock:
-                cart.quantity = product.stock
+        if request.user.is_authenticated:
+            quantity = 1 if request.POST['quantity'] == "" else int(request.POST['quantity'])
+            profile = Profile.objects.get(client=request.user)
+            product = Product.objects.get(pk=pk)
+            if Cart.objects.filter(profile=profile, product=product):
+                cart = Cart.objects.get(profile=profile, product=product)
+                cart.quantity += quantity
                 cart.save()
-                messages.error(request, "Can't add more of this item (not enough stock)")
-                return redirect('details product page', pk=pk)
-            messages.success(request, 'Successfully added to cart')
+                if cart.quantity > product.stock:
+                    cart.quantity = product.stock
+                    cart.save()
+                    messages.error(request, "Can't add more of this item (not enough stock)")
+                    return redirect('details product page', pk=pk)
+                messages.success(request, 'Successfully added to cart')
+            else:
+                cart = Cart.objects.create(profile=profile, product=product, quantity=quantity)
+                if cart.quantity > product.stock:
+                    cart.quantity = product.stock
+                    cart.save()
+                    messages.error(request, "Can't add more of this item (not enough stock)")
+                    return redirect('details product page', pk=pk)
+                messages.success(request, 'Successfully added to cart')
+            return redirect('details product page', pk=pk)
         else:
-            cart = Cart.objects.create(profile=profile, product=product, quantity=quantity)
-            if cart.quantity > product.stock:
-                cart.quantity = product.stock
-                cart.save()
-                messages.error(request, "Can't add more of this item (not enough stock)")
-                return redirect('details product page', pk=pk)
-            messages.success(request, 'Successfully added to cart')
-        return redirect('details product page', pk=pk)
+            return redirect('login page')
 
 
 class CategoryView(views.ListView):
