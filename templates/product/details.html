@@ -21,7 +21,7 @@
                     <div>
                         <form method="POST" action="{% url 'details product page' pk=object.pk %}">
                             <input name="quantity" class="quantity-input" type="number" value="1" min="1" max="{{ object.stock }}">
-                            <button {% if user.is_authenticated %}{% else %}disabled title="Login" {% endif %}>Add to cart</button>
+                            <button>Add to cart</button>
                             {% csrf_token %}
                         </form>
                     </div>
