@@ -33,8 +33,8 @@
                     <a href="{% url 'logout' %}">Logout</a>
                   </div>
                 </div>
-                <a href="{% url 'liked page' %}"><i class="icon fa-solid fa-heart"></i></a>
-                <a href="{% url 'cart page' %}"><i class="icon fa-solid fa-cart-shopping"></i></a>
+                <a href="{% url 'liked page' %}" style="position: relative"><i class="icon fa-solid fa-heart"></i>{% if liked_items %}<span class="helper-count">{{ liked_items|length }}</span>{% endif %}</a>
+                <a href="{% url 'cart page' %}" style="position: relative"><i class="icon fa-solid fa-cart-shopping"></i>{% if cart_items %}<span class="helper-count">{{ cart_items|length }}</span>{% endif %}</a>
             {% else %}
                 <a href="{% url 'login page' %}"><i class="icon fa-solid fa-arrow-right-to-bracket"></i></a>
             {% endif %}
