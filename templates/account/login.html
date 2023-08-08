@@ -28,7 +28,7 @@
         <form method="POST" action="{% url 'login page' %}">
             {{ form.as_div }}
             <div class="a-div">
-                <a href="#">Forgot password?</a>
+                <a href="{% url 'password-reset' %}">Forgot password?</a>
             </div>
             <div class="button-div">
                 <button>Login</button>
