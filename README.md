@@ -1,6 +1,13 @@
 # WiredWorld
 > This is a Django website project, assigned by SoftUni for an exam.
 
+Here is a link to the deployed project using AWS. -> http://wiredworld.ddns.net
+
+
+- ``📝``Note that the search bar isn't working because there is no SSL Certificate
+
+---
+
 To run it locally you will need:
  - Postgres database
  - install all packages using ```pip install -r requirements.txt```
