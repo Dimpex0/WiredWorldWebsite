@@ -2,3 +2,4 @@
 .production-env
 .idea
 media_files
+venv
